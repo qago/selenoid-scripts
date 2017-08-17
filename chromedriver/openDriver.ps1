@@ -12,7 +12,7 @@ if (-not (Test-Path env:SELENOID_PROCESS_PORT)) { $env:SELENOID_PROCESS_PORT = '
 mkdir $env:TMP/selenoid-$env:SELENOID_PROCESS_PORT
 hab install $pkg
 $env:TMP="$env:TMP/selenoid-$env:SELENOID_PROCESS_PORT"
-$chrome_bin_path = Resolve-Path "$(hab pkg exec $pkg powershell -c 'Get-Command chrome.exe | Select-Object -ExpandProperty Definition')/.."
-$chromedriver_exe_path = Resolve-path "$(hab pkg exec $pkg powershell -c 'Get-Command chromedriver.exe | Select-Object -ExpandProperty Definition')"
+$chrome_bin_path = Resolve-Path "$(hab pkg exec $pkg C:\Windows\System32\WindowsPowershell\v1.0\powershell.exe -c 'Get-Command chrome.exe | Select-Object -ExpandProperty Definition')/.."
+$chromedriver_exe_path = Resolve-path "$(hab pkg exec $pkg C:\Windows\System32\WindowsPowershell\v1.0\powershell.exe -c 'Get-Command chromedriver.exe | Select-Object -ExpandProperty Definition')"
 & $env:ComSpec /c mklink $chrome_bin_path\chromedriver.exe $chromedriver_exe_path
 & "$chrome_bin_path/chromedriver.exe" --port=$env:SELENOID_PROCESS_PORT
